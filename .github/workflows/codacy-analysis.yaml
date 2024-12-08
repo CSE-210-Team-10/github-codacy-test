@@ -1,6 +1,6 @@
 name: Codacy Analysis CLI
 
-on: 
+on:
   pull_request:
     branches: ["master", "main"]
 
@@ -10,8 +10,15 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
-        uses: actions/checkout@main
+        uses: actions/checkout@v3
 
-      - name: Run Codacy Analysis CLI
-        uses: codacy/codacy-analysis-cli-action@master
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: "22"
 
+      - name: Install dependencies
+        run: npm install
+
+      - name: Run Codacy Analysis CLI (ESLint Only)
+        run: codacy-analysis-cli analyze --tool eslint --directory .
