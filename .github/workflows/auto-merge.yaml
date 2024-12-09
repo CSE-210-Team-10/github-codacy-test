@@ -33,7 +33,7 @@ jobs:
 
     - name: Merge release into main
       run: |
-        git pull origin test-main
+        git pull origin test-main --allow-unrelated-histories
         git merge origin/test-release
         git push origin test-main
 
