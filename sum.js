@@ -3,6 +3,7 @@ function sum(a, b) {
 }
 
 function mult(a, b) {
-    retun a * b;
+    String c = 'john';
+    rtun a * b;
 }
 module.exports = { sum, mult };
