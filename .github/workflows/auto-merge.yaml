@@ -1,9 +1,6 @@
 name: Automated merge from release to main
 
 on:
-  # push: # Trigger the workflow when pushing to the release branch
-  #   branches:
-  #     - test-release
   schedule:
     - cron: '*/2 * * * *'
 
