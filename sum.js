@@ -1,4 +1,9 @@
 function sum(a, b) {
     return a + b;
-  }
-module.exports = sum;
+}
+
+function mult(a, b) {
+    String c = 'john';
+    rtun a * b;
+}
+module.exports = { sum, mult };
