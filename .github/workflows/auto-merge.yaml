@@ -18,25 +18,24 @@ jobs:
 
     steps:
     - name: Checkout repository
-      uses: actions/checkout@v3
+      uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
 
     - name: Configure Git
       run: |
         git config user.name "github-actions[bot]"
         git config user.email "github-actions[bot]@users.noreply.github.com"
 
-    - name: Fetch all branches
-      run: git fetch --all
-
     - name: Checkout main branch
       run: git checkout test-main
 
     - name: Merge release into main
       run: |
-        git pull origin test-main --allow-unrelated-histories
-        git merge origin/test-release
+        git pull origin test-main
+        git merge test-release
         git push origin test-main
-
+    
     - name: Handle merge conflicts
       if: failure()
       run: |
