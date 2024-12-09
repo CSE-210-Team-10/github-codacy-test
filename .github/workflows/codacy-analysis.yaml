@@ -24,11 +24,11 @@ jobs:
 
       - name: Run Jest tests and generate coverage report
         run: npm run test -- --coverage  # Runs Jest and generates coverage
-
-      - name: Report coverage to Codacy
+              
+      - name: Codacy Coverage Reporter
         uses: codacy/codacy-coverage-reporter-action@v1.3.0
         with:
-          CODACY_PROJECT_TOKEN: $${{ secrets.CODACY_API_TOKEN }} 
+          project-token: $${{ secrets.CODACY_PROJECT_TOKEN }} 
           coverage-repots: ./coverage/lcov.info
         # run: |
         #   bash <(curl -Ls https://coverage.codacy.com/get.sh) --organization-provider gh --username CSE-210-Team-10 --project-name github-codacy-test
