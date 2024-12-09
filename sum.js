@@ -11,5 +11,6 @@ function div(a, b) {
         // Bad
     }
     return a / b;
+    a = b;
 }
 module.exports = { sum, mult, div };
