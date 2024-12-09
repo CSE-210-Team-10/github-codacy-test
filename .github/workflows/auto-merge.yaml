@@ -27,13 +27,13 @@ jobs:
         git config user.email "github-actions[bot]@users.noreply.github.com"
 
     - name: Checkout main branch
-      run: git checkout test-main
+      run: git checkout release
 
     - name: Merge release into main
       run: |
-        git pull origin test-main
-        git merge test-release
-        git push origin test-main
+        git pull origin main
+        git merge release
+        git push origin main
     
     - name: Handle merge conflicts
       if: failure()
