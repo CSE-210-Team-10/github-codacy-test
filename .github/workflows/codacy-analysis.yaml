@@ -22,11 +22,19 @@ jobs:
       - name: Install dependencies
         run: npm install  # Install Jest and other dependencies
 
-      - name: Run Jest tests and generate coverage report
-        run: npm run test -- --coverage  # Runs Jest and generates coverage
-
-      - name: Report coverage to Codacy
-        uses: codacy/codacy-coverage-reporter-action@v1.3.0
+      - name: Codacy CLI V2
+        uses: codacy/codacy-cli-v2-action@0.1.2
         with:
-          project-token: ${{ secrets.CODACY_PROJECT_TOKEN }}  # Ensure this secret is set in your repository
-          coverage-reports: ./coverage/lcov.info # Path to your coverage file
+          # sarif_file_path: ./report.sarif
+          project_token: ${{ secrets.CODACY_PROJECT_TOKEN }} 
+
+          
+
+      # - name: Run Jest tests and generate coverage report
+      #   run: npm run test -- --coverage  # Runs Jest and generates coverage
+
+      # - name: Report coverage to Codacy
+      #   uses: codacy/codacy-coverage-reporter-action@v1.3.0
+      #   with:
+      #     project-token: ${{ secrets.CODACY_PROJECT_TOKEN }}  # Ensure this secret is set in your repository
+      #     coverage-reports: ./coverage/lcov.info # Path to your coverage file
