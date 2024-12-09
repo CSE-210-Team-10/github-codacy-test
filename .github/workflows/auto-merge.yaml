@@ -2,7 +2,7 @@ name: Automated merge from release to main
 
 on:
   schedule:
-    - cron: '*/2 * * * *'
+    - cron: '*/5 * * * *'
   # workflow_dispatch # Add this for manual testing
   # push:
   #   branches:
