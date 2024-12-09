@@ -7,7 +7,7 @@ on:
   push:
     branches:
       - test-release 
-  workflow_dispatch
+  workflow_dispatch:
 
 jobs:
   merge-release-to-main:
