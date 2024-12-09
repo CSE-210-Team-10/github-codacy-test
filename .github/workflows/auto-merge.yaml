@@ -1,0 +1,42 @@
+name: Automated merge from release to main
+
+on:
+  schedule:
+    - cron: '*/2 * * * *'
+  # workflow_dispatch # Add this for manual testing
+  # push:
+  #   branches:
+  #     - test-release 
+
+jobs:
+  merge-release-to-main:
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: write
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
+
+    - name: Configure Git
+      run: |
+        git config user.name "github-actions[bot]"
+        git config user.email "github-actions[bot]@users.noreply.github.com"
+
+    - name: Checkout main branch
+      run: git checkout test-main
+
+    - name: Merge release into main
+      run: |
+        git pull origin test-main
+        git merge test-release
+        git push origin test-main
+    
+    - name: Handle merge conflicts
+      if: failure()
+      run: |
+        echo "Merge conflict detected. Please resolve conflicts manually."
+        exit 1
