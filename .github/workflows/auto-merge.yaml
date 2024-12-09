@@ -1,11 +1,11 @@
 name: Automated merge from release to main
 
 on:
-  push: # Trigger the workflow when pushing to the release branch
-    branches:
-      - test-release
-  # schedule:
-  #   - cron: '*/2 * * * *'
+  # push: # Trigger the workflow when pushing to the release branch
+  #   branches:
+  #     - test-release
+  schedule:
+    - cron: '*/2 * * * *'
 
 jobs:
   merge-release-to-main:
@@ -31,10 +31,10 @@ jobs:
 
     - name: Merge release into main
       run: |
-        git merge release --no-ff -m "Automated merge of release into main"
+        git merge test-release --no-ff -m "Automated merge of release into main"
         git push origin test-main
 
-    - name: Handle merge conflicts (optional)
+    - name: Handle merge conflicts
       if: failure()
       run: |
         echo "Merge conflict detected. Please resolve conflicts manually."
