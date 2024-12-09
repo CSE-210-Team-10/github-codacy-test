@@ -28,10 +28,10 @@ jobs:
 
     - name: Merge release into main
       run: |
-        git merge release --no-ff -m "Automated merge of release into main"
+        git merge test-release --no-ff -m "Automated merge of release into main"
         git push origin test-main
 
-    - name: Handle merge conflicts (optional)
+    - name: Handle merge conflicts
       if: failure()
       run: |
         echo "Merge conflict detected. Please resolve conflicts manually."
