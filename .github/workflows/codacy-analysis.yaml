@@ -29,4 +29,4 @@ jobs:
         uses: codacy/codacy-coverage-reporter-action@v1.3.0
         with:
           project-token: ${{ secrets.CODACY_PROJECT_TOKEN }}  # Ensure this secret is set in your repository
-          # coverage-reports: ./coverage/lcov-report/lcov-report.lcov  # Path to your coverage file
+          coverage-reports: ./coverage/lcov.info # Path to your coverage file
