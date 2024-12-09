@@ -4,6 +4,9 @@ on:
   # schedule:
   #   - cron: '*/2 * * * *'
   # workflow_dispatch # Add this for manual testing
+  push:
+    branches:
+      - test-release 
   workflow_dispatch
 
 jobs:
