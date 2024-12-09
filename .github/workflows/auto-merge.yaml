@@ -33,7 +33,8 @@ jobs:
 
     - name: Merge release into main
       run: |
-        git merge test-release --no-ff -m "Automated merge of release into main"
+        git pull origin test-main
+        git merge origin/test-release
         git push origin test-main
 
     - name: Handle merge conflicts
