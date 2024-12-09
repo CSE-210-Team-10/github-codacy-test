@@ -3,6 +3,7 @@ name: Automated merge from release to main
 on:
   schedule:
     - cron: '*/2 * * * *'
+  workflow_dispatch: # Add this for manual testing
 
 jobs:
   merge-release-to-main:
