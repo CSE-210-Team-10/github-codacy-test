@@ -1,18 +1,32 @@
 name: Codacy Coverage Reporter
 
-on: 
+on:
   pull_request:
-    branches: ["master", "main"]
+    branches:
+      - master
+      - main
 
 jobs:
   codacy-coverage-reporter:
     runs-on: ubuntu-latest
-    name: codacy-coverage-reporter
+    name: Codacy Coverage Reporter
     steps:
-      - uses: actions/checkout@v2
+      - name: Checkout code
+        uses: actions/checkout@v2
 
-      - name: Run codacy-coverage-reporter
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '16'
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Run Jest tests and generate coverage report
+        run: npm run test -- --coverage  # This generates the coverage report in the default directory
+
+      - name: Run Codacy Coverage Reporter
         uses: codacy/codacy-coverage-reporter-action@v1.3.0
         with:
           project-token: ${{ secrets.CODACY_API_TOKEN }}
-          coverage-reports: ./coverage/lcov-report.info
+          coverage-reports: ./coverage/lcov.info
