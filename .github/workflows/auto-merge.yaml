@@ -2,7 +2,7 @@ name: Automated merge from release to main
 
 on:
   schedule:
-    - cron: '*/5 * * * *'
+    - cron: '*/2 * * * *'
 
 jobs:
   merge-release-to-main:
