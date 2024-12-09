@@ -1,0 +1,15 @@
+---
+languages:
+  javascript:
+    enabled: true
+  css:
+    enabled: false
+  python:
+    enabled: false
+exclude_paths:
+  - ".bundle/**"
+  - "spec/**/*"
+  - "benchmarks/**/*"
+  - "**.min.js"
+  - "**/tests/**"
+  - ".github/workflows/**" # Exclude GitHub workflows
