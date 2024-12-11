@@ -29,7 +29,15 @@ jobs:
     - name: Checkout main branch
       run: git checkout release
 
+    - name: Check for changes between release and main
+      id: check_changes
+      run: |
+        git fetch origin
+        git diff --quiet origin/main..origin/release
+      continue-on-error: true
+
     - name: Merge release into main
+      if: steps.check_changes.outcome == 'success'
       run: |
         git pull origin main
         git merge release
