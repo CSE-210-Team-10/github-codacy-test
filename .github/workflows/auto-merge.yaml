@@ -37,7 +37,7 @@ jobs:
       continue-on-error: true
 
     - name: Merge release into main
-      if: steps.check_changes.outcome == 'success'
+      if: steps.check_changes.outcome == 'failure'
       run: |
         git pull origin main
         git merge release
