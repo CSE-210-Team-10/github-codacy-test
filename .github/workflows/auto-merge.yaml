@@ -1,50 +1,50 @@
-name: Automated merge from release to main
+# name: Automated merge from release to main
 
-on:
-  schedule:
-    - cron: '5 * * * *'
-  # workflow_dispatch # Add this for manual testing
-  # push:
-  #   branches:
-  #     - test-release 
+# on:
+#   schedule:
+#     - cron: '5 * * * *'
+#   # workflow_dispatch # Add this for manual testing
+#   # push:
+#   #   branches:
+#   #     - test-release 
 
-jobs:
-  merge-release-to-main:
-    runs-on: ubuntu-latest
+# jobs:
+#   merge-release-to-main:
+#     runs-on: ubuntu-latest
 
-    permissions:
-      contents: write
+#     permissions:
+#       contents: write
 
-    steps:
-    - name: Checkout repository
-      uses: actions/checkout@v4
-      with:
-        fetch-depth: 0
+#     steps:
+#     - name: Checkout repository
+#       uses: actions/checkout@v4
+#       with:
+#         fetch-depth: 0
 
-    - name: Configure Git
-      run: |
-        git config user.name "github-actions[bot]"
-        git config user.email "github-actions[bot]@users.noreply.github.com"
+#     - name: Configure Git
+#       run: |
+#         git config user.name "github-actions[bot]"
+#         git config user.email "github-actions[bot]@users.noreply.github.com"
 
-    - name: Checkout main branch
-      run: git checkout release
+#     - name: Checkout main branch
+#       run: git checkout release
 
-    - name: Check for changes between release and main
-      id: check_changes
-      run: |
-        git fetch origin
-        git diff --quiet origin/main..origin/release
-      continue-on-error: true
+#     - name: Check for changes between release and main
+#       id: check_changes
+#       run: |
+#         git fetch origin
+#         git diff --quiet origin/main..origin/release
+#       continue-on-error: true
 
-    - name: Merge release into main
-      if: steps.check_changes.outcome == 'failure'
-      run: |
-        git pull origin main
-        git merge release
-        git push origin main
+#     - name: Merge release into main
+#       if: steps.check_changes.outcome == 'failure'
+#       run: |
+#         git pull origin main
+#         git merge release
+#         git push origin main
     
-    - name: Handle merge conflicts
-      if: failure()
-      run: |
-        echo "Merge conflict detected. Please resolve conflicts manually."
-        exit 1
+#     - name: Handle merge conflicts
+#       if: failure()
+#       run: |
+#         echo "Merge conflict detected. Please resolve conflicts manually."
+#         exit 1
